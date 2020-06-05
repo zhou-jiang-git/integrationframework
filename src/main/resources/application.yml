@@ -132,7 +132,7 @@ spring:
       password: root
 mybatis:
   mapper-locations: classpath*:mapper/*.xml
-  type-aliases-package: com.zhoujiang.domain
+  type-aliases-package: com.zhoujiang.integrationframework.domain
   configuration:
     useGeneratedKeys: true
     useColumnLabel: true

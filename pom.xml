@@ -88,10 +88,10 @@
             <version>2.1.2</version>
         </dependency>
        <!-- cloud分布式-->
-       <!-- <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
-        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.cloud</groupId>-->
+<!--            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>-->
+<!--        </dependency>-->
        <!-- zookeeper-->
        <!-- <dependency>
             <groupId>org.springframework.cloud</groupId>
