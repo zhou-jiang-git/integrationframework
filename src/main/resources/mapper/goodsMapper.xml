@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhoujiang.integrationframework.dao.goodsMapper">
+  <resultMap id="BaseResultMap" type="com.zhoujiang.integrationframework.domain.goods">
+    <id column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="goods_category" jdbcType="INTEGER" property="goodsCategory" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="goods_status" jdbcType="INTEGER" property="goodsStatus" />
+    <result column="goods_bussinessid" jdbcType="INTEGER" property="goodsBussinessid" />
+    <result column="goods_price" jdbcType="DOUBLE" property="goodsPrice" />
+    <result column="goods_counts" jdbcType="INTEGER" property="goodsCounts" />
+    <result column="goods_intro" jdbcType="VARCHAR" property="goodsIntro" />
+    <result column="goods_discount" jdbcType="DOUBLE" property="goodsDiscount" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    goods_id, goods_category, goods_name, goods_status, goods_bussinessid, goods_price, 
+    goods_counts, goods_intro, goods_discount
+  </sql>
+  <select id="selectByExample" parameterType="com.zhoujiang.integrationframework.domain.goodsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from goods
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zhoujiang.integrationframework.domain.goodsExample">
+    delete from goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zhoujiang.integrationframework.domain.goods">
+    insert into goods (goods_id, goods_category, goods_name, 
+      goods_status, goods_bussinessid, goods_price, 
+      goods_counts, goods_intro, goods_discount
+      )
+    values (#{goodsId,jdbcType=INTEGER}, #{goodsCategory,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, 
+      #{goodsStatus,jdbcType=INTEGER}, #{goodsBussinessid,jdbcType=INTEGER}, #{goodsPrice,jdbcType=DOUBLE}, 
+      #{goodsCounts,jdbcType=INTEGER}, #{goodsIntro,jdbcType=VARCHAR}, #{goodsDiscount,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhoujiang.integrationframework.domain.goods">
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="goodsCategory != null">
+        goods_category,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+      <if test="goodsStatus != null">
+        goods_status,
+      </if>
+      <if test="goodsBussinessid != null">
+        goods_bussinessid,
+      </if>
+      <if test="goodsPrice != null">
+        goods_price,
+      </if>
+      <if test="goodsCounts != null">
+        goods_counts,
+      </if>
+      <if test="goodsIntro != null">
+        goods_intro,
+      </if>
+      <if test="goodsDiscount != null">
+        goods_discount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsCategory != null">
+        #{goodsCategory,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsStatus != null">
+        #{goodsStatus,jdbcType=INTEGER},
+      </if>
+      <if test="goodsBussinessid != null">
+        #{goodsBussinessid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPrice != null">
+        #{goodsPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsCounts != null">
+        #{goodsCounts,jdbcType=INTEGER},
+      </if>
+      <if test="goodsIntro != null">
+        #{goodsIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsDiscount != null">
+        #{goodsDiscount,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zhoujiang.integrationframework.domain.goodsExample" resultType="java.lang.Long">
+    select count(*) from goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update goods
+    <set>
+      <if test="record.goodsId != null">
+        goods_id = #{record.goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsCategory != null">
+        goods_category = #{record.goodsCategory,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsName != null">
+        goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsStatus != null">
+        goods_status = #{record.goodsStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsBussinessid != null">
+        goods_bussinessid = #{record.goodsBussinessid,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsPrice != null">
+        goods_price = #{record.goodsPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.goodsCounts != null">
+        goods_counts = #{record.goodsCounts,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsIntro != null">
+        goods_intro = #{record.goodsIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsDiscount != null">
+        goods_discount = #{record.goodsDiscount,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update goods
+    set goods_id = #{record.goodsId,jdbcType=INTEGER},
+      goods_category = #{record.goodsCategory,jdbcType=INTEGER},
+      goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      goods_status = #{record.goodsStatus,jdbcType=INTEGER},
+      goods_bussinessid = #{record.goodsBussinessid,jdbcType=INTEGER},
+      goods_price = #{record.goodsPrice,jdbcType=DOUBLE},
+      goods_counts = #{record.goodsCounts,jdbcType=INTEGER},
+      goods_intro = #{record.goodsIntro,jdbcType=VARCHAR},
+      goods_discount = #{record.goodsDiscount,jdbcType=DOUBLE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhoujiang.integrationframework.domain.goods">
+    update goods
+    <set>
+      <if test="goodsCategory != null">
+        goods_category = #{goodsCategory,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null">
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsStatus != null">
+        goods_status = #{goodsStatus,jdbcType=INTEGER},
+      </if>
+      <if test="goodsBussinessid != null">
+        goods_bussinessid = #{goodsBussinessid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPrice != null">
+        goods_price = #{goodsPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsCounts != null">
+        goods_counts = #{goodsCounts,jdbcType=INTEGER},
+      </if>
+      <if test="goodsIntro != null">
+        goods_intro = #{goodsIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsDiscount != null">
+        goods_discount = #{goodsDiscount,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhoujiang.integrationframework.domain.goods">
+    update goods
+    set goods_category = #{goodsCategory,jdbcType=INTEGER},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_status = #{goodsStatus,jdbcType=INTEGER},
+      goods_bussinessid = #{goodsBussinessid,jdbcType=INTEGER},
+      goods_price = #{goodsPrice,jdbcType=DOUBLE},
+      goods_counts = #{goodsCounts,jdbcType=INTEGER},
+      goods_intro = #{goodsIntro,jdbcType=VARCHAR},
+      goods_discount = #{goodsDiscount,jdbcType=DOUBLE}
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </update>
+</mapper>
