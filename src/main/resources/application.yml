@@ -66,8 +66,8 @@ spring:
 
   redis:
     database: 0 # Redis 数据库索引（默认为 0）
-    host: 127.0.0.1 # Redis 服务器地址
-    port: 6379 # Redis 服务器连接端口
+    host: 192.168.1.136 # Redis 服务器地址
+    port: 6666 # Redis 服务器连接端口
     password:  # Redis 服务器连接密码（默认为空）
     lettuce:
       pool:
@@ -138,4 +138,4 @@ mybatis:
     useColumnLabel: true
     mapUnderscoreToCamelCase: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #配置mybatis输出日志
-debug: true
+#debug: true

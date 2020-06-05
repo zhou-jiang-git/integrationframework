@@ -39,7 +39,7 @@ public class IntegrationframeworkApplication {
                     = new SavedRequestAwareAuthenticationSuccessHandler();
             successHandler.setTargetUrlParameter("redirectTo");
             successHandler.setDefaultTargetUrl("/");
-
+            http.csrf().ignoringAntMatchers("/druid/*");
             http.authorizeRequests()
                     .antMatchers("/assets/**").permitAll()
                     .antMatchers("/login").permitAll()
